@@ -90,7 +90,10 @@ section .task-column{
     gap: var(--padding-m);
 }
 
-
+section .task-column.hover-over{
+    border: 2px dashed var(--button-text-color);
+    scale: 1.02;
+}
 
 section .task-column .heading{
     width: 100%;
