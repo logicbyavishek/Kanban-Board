@@ -40,11 +40,19 @@ body{
     color: var(--primary-text-color);
 }
 
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: blueviolet;
+}
+
 nav{
     padding: var(--navbar-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(81, 43, 14);
 }
 
 nav button{
@@ -55,4 +63,18 @@ nav button{
     outline: none;
     border-radius: var(--border-radius-m);
     cursor: pointer;
+}
+
+section{
+    background-color: rgb(196, 50, 33);
+    padding: var(--section-padding);
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1; /*taking remaining space */
+    gap: var(--padding-xxl);
+}
+
+section .task-column{
+    background-color: rgb(46, 52, 110);
+    flex-grow: 1; /* taking all space automatically */
 }
