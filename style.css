@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+:root{
+    --primary-background-color: #0e0e0e;
+    --primary-text-color: #ededed;
+
+    /* Padding Variables */
+    --navbar-padding: 15px 30px;
+    --section-padding: 20px 40px;
+    --padding-s:5px;
+    --padding-m:10px;
+    --padding-l:15px;
+    --padding-xl:20px;
+    --padding-xxl:30px;
+}
