@@ -54,3 +54,29 @@ bg.addEventListener('click',()=>{
     modal.classList.toggle('active');
 })
 // <<<<<<<<<--------------- End of Modal functionality Logic
+
+// Add Task Functionality Logic--------->>>>
+const addTaskButton = document.querySelector('#add-new-task');
+
+addTaskButton.addEventListener('click',()=>{
+    const taskTitle=document.querySelector('#task-titel-input').value;
+    const taskDesc=document.querySelector('#task-desc-input').value;
+
+    const div = document.createElement('div');
+    div.classList.add('task');
+    div.setAttribute('draggable','true');
+    div.innerHTML=`         <h2>${taskTitle}</h2>
+                            <p>${taskDesc}</p>
+                            <button>Delete</button>`;
+    todo.appendChild(div);
+    // Add drag event to the newly created task
+    div.addEventListener('drag',(e)=>{
+        draggedItem = div;
+    })
+
+    // Clear the input fields
+    document.querySelector('#task-titel-input').value='';
+    document.querySelector('#task-desc-input').value='';
+    // Close the modal
+    modal.classList.remove('active');
+})
