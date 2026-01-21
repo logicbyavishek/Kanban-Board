@@ -65,7 +65,7 @@ nav button{
     color: var(--button-text-color);
     border-radius: var(--border-radius-m);
     cursor: pointer;
-    transition: all ease 0.2s;
+    transition: all 0.2s ease;
 }
 
 nav button:active{
@@ -88,11 +88,12 @@ section .task-column{
     display: flex;
     flex-direction: column;
     gap: var(--padding-m);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 section .task-column.hover-over{
     border: 2px dashed var(--button-text-color);
-    scale: 1.02;
+    scale: 1.05;
 }
 
 section .task-column .heading{
@@ -121,7 +122,7 @@ section .task-column .task button{
     border-radius: var(--border-radius-s);
     cursor: pointer;
     align-self: flex-end;
-    transition: all ease 0.2s;
+    transition: all 0.2s ease;
 }
 
 section .task-column .task button:active{
