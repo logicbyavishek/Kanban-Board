@@ -1,8 +1,38 @@
+let tasksData = {};
+
 const todo = document.querySelector('#todo');
 const progress = document.querySelector('#progress');
 const done = document.querySelector('#done');
+const columns = [todo, progress, done];
 
 let draggedItem = null; // create a variable to store the reference of the dragged item
+
+
+if(localStorage.getItem('tasksData')){
+    const data = JSON.parse(localStorage.getItem('tasksData'));
+    console.log(data);
+    for(const col in data){
+        const column = document.querySelector(`#${col}`);
+        data[col].forEach(taskData=>{
+            const div = document.createElement('div');
+            div.classList.add('task');
+            div.setAttribute('draggable','true');
+            div.innerHTML=`         <h2>${taskData.title}</h2>
+                                    <p>${taskData.desc}</p>
+                                    <button>Delete</button>`;
+            column.appendChild(div);
+            // Add drag event to the newly created task
+            div.addEventListener('drag',(e)=>{
+                draggedItem = div;
+            })
+        })
+
+        const task = column.querySelectorAll('.task');
+        const count = column.querySelector('.right');
+        count.textContent = task.length;
+    }
+}
+
 
 const task = document.querySelectorAll('.task');
 
@@ -31,9 +61,27 @@ function DragAndDrop(column){
 
     column.addEventListener('drop',(e)=>{
         e.preventDefault();
-        console.log('dropped',draggedItem,column);
         column.appendChild(draggedItem); // append the dragged item to the column where it is dropped
         column.classList.remove('hover-over'); // remove the hover effect once dropped
+
+    // Update task count in todo column
+        columns.forEach(col=>{
+            const task = col.querySelectorAll('.task');
+            const count = col.querySelector('.right')
+
+            // Update tasksData object 
+            tasksData[col.id]=Array.from(task).map(t=>{
+                return {
+                    title: t.querySelector('h2').innerText,
+                    desc: t.querySelector('p').innerText
+                }
+            });
+
+            localStorage.setItem('tasksData',JSON.stringify(tasksData));
+
+            count.textContent = task.length;
+        })
+
     })
 }
 
@@ -69,6 +117,25 @@ addTaskButton.addEventListener('click',()=>{
                             <p>${taskDesc}</p>
                             <button>Delete</button>`;
     todo.appendChild(div);
+
+    // Update task count in todo column
+    columns.forEach(col=>{
+            const task = col.querySelectorAll('.task');
+            const count = col.querySelector('.right')
+
+            // Update tasksData object 
+            tasksData[col.id]=Array.from(task).map(t=>{
+                return {
+                    title: t.querySelector('h2').innerText,
+                    desc: t.querySelector('p').innerText
+                }
+            });
+
+            localStorage.setItem('tasksData',JSON.stringify(tasksData));
+
+            count.textContent = task.length;
+        })
+
     // Add drag event to the newly created task
     div.addEventListener('drag',(e)=>{
         draggedItem = div;
